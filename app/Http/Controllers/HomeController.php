@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarouselGallery;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
@@ -15,14 +16,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     public function index()
-     {
-         $categories = Category::take(6)->get();
-         $products = Product::with('galleries')->take(8)->get();
- 
-         return view('pages.home',[
-             'categories' => $categories,
-             'products' => $products
-         ]);
-     }
+    public function index()
+    {
+        $categories = Category::take(6)->get();
+        $products = Product::with('galleries')->take(8)->get();
+        $carousels = CarouselGallery::all();
+        // dd($carousels);
+
+        return view('pages.home', [
+            'categories' => $categories,
+            'products' => $products,
+            'carousels' => $carousels
+        ]);
+    }
 }
