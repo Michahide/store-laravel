@@ -25,6 +25,10 @@
                     <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px;" />
                 </div>
                 <div class="list-group list-group-flush">
+                    <a href="{{ route('home') }}"
+                        class="list-group-item list-group-item-action">
+                        Home
+                    </a>
                     <a href="{{ route('admin-dashboard') }}"
                         class="list-group-item list-group-item-action {{ request()->is('admin') ? 'active' : '' }} ">
                         Dashboard
@@ -80,7 +84,14 @@
                                         Hi, {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <a href="{{ route('logout') }}" class="dropdown-item"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                             </ul>

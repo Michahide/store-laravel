@@ -41,9 +41,6 @@
                                                 {{ $transaction->product->name }}
                                             </div>
                                             <div class="col-md-3">
-                                                {{ $transaction->product->user->store_name }}
-                                            </div>
-                                            <div class="col-md-3">
                                                 {{ $transaction->created_at }}
                                             </div>
                                             <div class="col-md-1 d-none d-md-block">

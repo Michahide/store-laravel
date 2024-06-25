@@ -32,7 +32,7 @@
                             <a href="{{ route('categories-detail', $category->slug) }}"
                                 class="component-categories d-block">
                                 <div class="categories-image">
-                                    <img src="{{ url($category->photo) }}" alt="" class="w-100" />
+                                    <img src="{{ Storage::url($category->photo) }}" alt="" class="w-100" />
                                 </div>
                                 <p class="categories-text">
                                     {{ $category->name }}
@@ -68,7 +68,7 @@
                                 <div class="products-thumbnail">
                                     <div class="products-image"
                                         style="
-                                @if ($product->galleries->count()) background-image: url('{{ url($product->galleries->first()->photos) }}')
+                                @if ($product->galleries->count()) background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
                                 @else
                                     background-color: #eee @endif
                             ">

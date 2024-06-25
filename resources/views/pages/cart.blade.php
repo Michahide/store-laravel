@@ -117,8 +117,10 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="provinces_id">Province</label>
-                  <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
-                    <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                  <select name="provinces_id" id="provinces_id" class="form-control">
+                    @foreach ($provinces as $province)
+                      <option value={{$province->id}}">{{ $province->name }}</option>
+                    @endforeach
                   </select>
                   <select v-else class="form-control"></select>
                 </div>
@@ -126,10 +128,11 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="regencies_id">City</label>
-                  <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
-                    <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                  <select name="regencies_id" id="regencies_id" class="form-control">
+                    @foreach ($regencies as $regency)
+                      <option value="regency.id">{{$regency->name }}</option>
+                    @endforeach
                   </select>
-                  <select v-else class="form-control"></select>
                 </div>
               </div>
               <div class="col-md-4">

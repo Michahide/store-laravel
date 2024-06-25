@@ -50,12 +50,15 @@ Route::post('/checkout/callback', [CheckoutController::class, 'callback'])
     ->name('midtrans-callback');
 Route::get('/register/success', [AuthRegisterController::class, 'success'])
     ->name('register-success');
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 
-    Route::post('/checkout', [CheckoutController::class, 'callback'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
@@ -69,7 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])
         ->name('dashboard-settings-account');
-    Route::post('/dashboard/update/{redirect}', [DashboardSettingController::class . 'update'])
+    Route::post('/dashboard/update/{redirect}', [DashboardSettingController::class, 'update'])
         ->name('dashboard-settings-redirect');
 });
 
